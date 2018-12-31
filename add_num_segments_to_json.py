@@ -5,7 +5,7 @@ if __name__ == '__main__':
 
     for split in ['train', 'val', 'test']:
         didemo_anno_list = json.load(open('data/{}_data.json'.format(split)))
-        tempo_anno_list = json.load(open('data/tempoHL+didemo_{}.json'.format(split)))
+        tempo_anno_list = json.load(open('data/tempoTL+didemo_{}.json'.format(split)))
 
         nb_dict = {}
         for anno in didemo_anno_list:
@@ -17,7 +17,9 @@ if __name__ == '__main__':
             anno['num_segments'] = nb_dict[anno['video']]
             anno['times'] = anno['train_times']
             del anno['train_times']
+            if not isinstance(anno['times'],list):
+                anno['times'] = [anno['times']]
             data.append(anno)
-        with open('data/new_tempoHL+didemo_{}.json'.format(split), 'w') as json_file:
+        with open('data/new_tempoTL+didemo_{}.json'.format(split), 'w') as json_file:
             json.dump(data, json_file)
 
