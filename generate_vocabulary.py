@@ -15,11 +15,11 @@ if __name__ == '__main__':
     glove_vector = [g.split(' ') for g in glove_txt]
     glove_words = [g[0] for g in glove_vector]
 
-    txt_path = 'data/didemo_vocab_glove_complete.txt'
+    txt_path = 'data/tempoHL+didemo_vocab_glove_complete.txt'
     vocab_file = open(txt_path, 'w')
     words = []
     for split in ['train', 'val', 'test']:
-        anno_list = json.load(open('data/{}_data.json'.format(split)))
+        anno_list = json.load(open('data/tempoHL+didemo_{}.json'.format(split)))
 
         for anno in anno_list:
             words.extend(word_tokenize(anno['description']))
